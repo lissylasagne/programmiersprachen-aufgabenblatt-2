@@ -11,7 +11,7 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (Vec2(2.0, 3.5).x == 2.0);
 			REQUIRE (Vec2(2.0, 3.5).y == 3.5);
 			REQUIRE (Vec2(0, 3.5).x == 0);
-			REQUIRE (Vec2(0, 6.23).y == 6.23);
+			REQUIRE (Vec2(0, 6.23).y == Approx(6.23));
 		}
 
 		SECTION ("plus equals operator") {
@@ -21,21 +21,21 @@ TEST_CASE("test vectors", "[Vec2]")
 			
 			vecA += vecB;
 			REQUIRE (vecA.x == 2.0);
-			REQUIRE (vecA.y == 7.2);
+			REQUIRE (vecA.y == Approx(7.2));
 			REQUIRE (vecB.x == 0.0);
-			REQUIRE (vecB.y == 5.2);
+			REQUIRE (vecB.y == Approx(5.2));
 
 			vecB += vecC;
-			REQUIRE (vecB.x == 3.6);
-			REQUIRE (vecB.y == 6.2);
-			REQUIRE (vecC.x == 3.6);
+			REQUIRE (vecB.x == Approx(3.6));
+			REQUIRE (vecB.y == Approx(6.2));
+			REQUIRE (vecC.x == Approx(3.6));
 			REQUIRE (vecC.y == 1.0);
 
 			vecC += vecA;
-			REQUIRE (vecC.x == 5.6);
-			REQUIRE (vecC.y == 8.2);
-			REQUIRE (vecA.x == 2.0);
-			REQUIRE (vecA.y == 7.2);
+			REQUIRE (vecC.x == Approx(5.6));
+			REQUIRE (vecC.y == Approx(8.2));
+			REQUIRE (vecA.x == Approx(2.0));
+			REQUIRE (vecA.y == Approx(7.2));
 		}
 
 		SECTION ("minus equals operator") {
@@ -45,21 +45,21 @@ TEST_CASE("test vectors", "[Vec2]")
 
 			vecA -= vecB;
 			REQUIRE (vecA.x == 2.0);
-			REQUIRE (vecA.y == -3.2);
+			REQUIRE (vecA.y == Approx(-3.2));
 			REQUIRE (vecB.x == 0.0);
-			REQUIRE (vecB.y == 5.2);
+			REQUIRE (vecB.y == Approx(5.2));
 
 			vecB -= vecC;
-			REQUIRE (vecB.x == -3.6);
-			REQUIRE (vecB.y == 4.2);
-			REQUIRE (vecC.x == 3.6);
+			REQUIRE (vecB.x == Approx(-3.6));
+			REQUIRE (vecB.y == Approx(4.2));
+			REQUIRE (vecC.x == Approx(3.6));
 			REQUIRE (vecC.y == 1.0);
 
 			vecC -= vecA;
-			REQUIRE (vecC.x == 1.6);
-			REQUIRE (vecC.y == 4.2);
+			REQUIRE (vecC.x == Approx(1.6));
+			REQUIRE (vecC.y == Approx(4.2));
 			REQUIRE (vecA.x == 2.0);
-			REQUIRE (vecA.y == -3.2);
+			REQUIRE (vecA.y == Approx(-3.2));
 		}
 
 		SECTION ("multiply equals operator") {
@@ -80,8 +80,8 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (vecB.y == 0.0);
 
 			vecC *= c;
-			REQUIRE (vecC.x == -14.04);
-			REQUIRE (vecC.y == -3.9);
+			REQUIRE (vecC.x == Approx(-14.04));
+			REQUIRE (vecC.y == Approx(-3.9));
 			
 		}
 
@@ -100,11 +100,11 @@ TEST_CASE("test vectors", "[Vec2]")
 
 			vecB /= b;
 			REQUIRE (vecB.x == 0.0);
-			REQUIRE (vecB.y == 5.2);
+			REQUIRE (vecB.y == Approx(5.2));
 
 			vecC /= c;
-			REQUIRE (vecC.x == Approx(-0.923));
-			REQUIRE (vecC.y == Approx(-0.256));
+			REQUIRE (vecC.x == Approx(-0.92308));
+			REQUIRE (vecC.y == Approx(-0.25641));
 		}
 
 		SECTION ("plus operator") {
@@ -115,15 +115,15 @@ TEST_CASE("test vectors", "[Vec2]")
 			
 			Vec2 vecD = vecA + vecB;
 			REQUIRE (vecD.x == 2.0);
-			REQUIRE (vecD.y == 7.2);
+			REQUIRE (vecD.y == Approx(7.2));
 
 			Vec2 vecE = vecB + vecC;
-			REQUIRE (vecE.x == 3.6);
-			REQUIRE (vecE.y == 6.2);
+			REQUIRE (vecE.x == Approx(3.6));
+			REQUIRE (vecE.y == Approx(6.2));
 
 			Vec2 vecF = vecC + vecA;
-			REQUIRE (vecF.x == 5.6);
-			REQUIRE (vecF.y == 3.0);
+			REQUIRE (vecF.x == Approx(5.6));
+			REQUIRE (vecF.y == Approx(3.0));
 			
 		}
 
@@ -135,15 +135,15 @@ TEST_CASE("test vectors", "[Vec2]")
 			
 			Vec2 vecD = vecA - vecB;
 			REQUIRE (vecD.x == 2.0);
-			REQUIRE (vecD.y == -3.2);
+			REQUIRE (vecD.y == Approx(-3.2));
 
 			Vec2 vecE = vecB - vecC;
-			REQUIRE (vecE.x == -3.6);
-			REQUIRE (vecE.y == 4.2);
+			REQUIRE (vecE.x == Approx(-3.6));
+			REQUIRE (vecE.y == Approx(4.2));
 
 			Vec2 vecF = vecC - vecA;
-			REQUIRE (vecF.x == 1.6);
-			REQUIRE (vecF.y == -1.0);
+			REQUIRE (vecF.x == Approx(1.6));
+			REQUIRE (vecF.y == Approx(-1.0));
 			
 		}
 
@@ -165,8 +165,8 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (vecE.y == 0.0);
 
 			Vec2 vecF = vecC * c;
-			REQUIRE (vecF.x == -14.04);
-			REQUIRE (vecF.y == -3.9);
+			REQUIRE (vecF.x == Approx(-14.04));
+			REQUIRE (vecF.y == Approx(-3.9));
 			
 		}
 
@@ -185,11 +185,11 @@ TEST_CASE("test vectors", "[Vec2]")
 
 			Vec2 vecE = vecB / b;
 			REQUIRE (vecE.x == 0.0);
-			REQUIRE (vecE.y == 5.2);
+			REQUIRE (vecE.y == Approx(5.2));
 
 			Vec2 vecF = vecC / c;
-			REQUIRE (vecF.x == Approx(-0.923));
-			REQUIRE (vecF.y == Approx(-0.256));
+			REQUIRE (vecF.x == Approx(-0.92308));
+			REQUIRE (vecF.y == Approx(-0.25641));
 			
 		}
 
@@ -211,8 +211,8 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (vecE.y == 0.0);
 
 			Vec2 vecF = c * vecC;
-			REQUIRE (vecF.x == -14.04);
-			REQUIRE (vecF.y == -3.9);
+			REQUIRE (vecF.x == Approx(-14.04));
+			REQUIRE (vecF.y == Approx(-3.9));
 				
 		}
 
@@ -227,7 +227,7 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (Mat2().y == 0.0);
 			REQUIRE (Mat2().z == 1.0);
 			REQUIRE (Mat2(2.0, 5.2, 0.0, -1.0).w == 2.0);
-			REQUIRE (Mat2(2.0, 5.2, 0.0, -1.0).x == 5.2);
+			REQUIRE (Mat2(2.0, 5.2, 0.0, -1.0).x == Approx(5.2));
 			REQUIRE (Mat2(2.0, 5.2, 0.0, -1.0).y == 0.0);
 			REQUIRE (Mat2(2.0, 5.2, 0.0, -1.0).z == -1.0);
 		}
@@ -248,13 +248,13 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (matB.w == 7.0);
 			REQUIRE (matB.x == 10.0);
 			REQUIRE (matB.y == 15.0);
-			REQUIRE (matB.z == 24.0);
+			REQUIRE (matB.z == 22.0);
 
 			matB *= matC;
-			REQUIRE (matB.w == 22.4);
-			REQUIRE (matB.x == 15.6);
-			REQUIRE (matB.y == 48);
-			REQUIRE (matB.z == 24.5);
+			REQUIRE (matB.w == Approx(22.4));
+			REQUIRE (matB.x == Approx(15.6));
+			REQUIRE (matB.y == 48.0);
+			REQUIRE (matB.z == Approx(32.0));
 		}
 
 		SECTION("multiply operator") {
@@ -273,14 +273,99 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (matE.w == 7.0);
 			REQUIRE (matE.x == 10.0);
 			REQUIRE (matE.y == 15.0);
-			REQUIRE (matE.z == 24.0);
+			REQUIRE (matE.z == 22.0);
 
 			Mat2 matG = matB * matC;
-			REQUIRE (matG.w == 22.4);
-			REQUIRE (matG.x == 15.6);
-			REQUIRE (matG.y == 48);
-			REQUIRE (matG.z == 24.5);
+			REQUIRE (matG.w == Approx(3.2));
+			REQUIRE (matG.x == Approx(0.8));
+			REQUIRE (matG.y == Approx(9.6));
+			REQUIRE (matG.z == Approx(7.4));
 		}
+
+		SECTION("matrix vector multiplication"){
+			Mat2 matA(1.0, 2.0, 3.0, 4.0);
+			Mat2 matB(0.0, 3.8, 2.5, -1.0);
+			Vec2 vecA(1.0, 2.0);
+			Vec2 vecB(-3.9, 0.0);
+
+			Vec2 vecC = matA.vecmat(vecA);
+			REQUIRE (vecC.x == 5.0);
+			REQUIRE (vecC.y == 11.0);
+
+			Vec2 vecD = matA.vecmat(vecB);
+			REQUIRE (vecD.x == Approx(-3.9));
+			REQUIRE (vecD.y == Approx(-11.7));
+
+			Vec2 vecE = matB.vecmat(vecA);
+			REQUIRE (vecE.x == Approx(7.6));
+			REQUIRE (vecE.y == Approx(0.5));
+
+			Vec2 vecF = matB.vecmat(vecB);
+			REQUIRE (vecF.x == 0.0);
+			REQUIRE (vecF.y == Approx(-9.75));
+		}
+
+		SECTION("determinant"){
+			Mat2 matA(1.0, 2.0, 3.0, 4.0);
+			Mat2 matB(3.9, -2.6, 0.0, 1.0);
+
+			REQUIRE(matA.det() == -2.0);
+			REQUIRE(matB.det() == Approx(3.9));
+		}
+
+		SECTION("inverse"){
+			Mat2 matA(1.0, 2.0, 3.0, 4.0);
+			Mat2 matB(3.9, -2.6, 0.0, 1.0);
+
+			Mat2 matC = matA.inv();
+			REQUIRE(matC.w == -2.0);
+			REQUIRE(matC.x == 1.0);
+			REQUIRE(matC.y == Approx(1.5));
+			REQUIRE(matC.z == Approx(-0.5));
+
+			Mat2 matD = matB.inv();
+			REQUIRE(matD.w == Approx(0.2564));
+			REQUIRE(matD.x == Approx(0.66667));
+			REQUIRE(matD.y == 0.0);
+			REQUIRE(matD.z == 1.0);
+		}
+
+		SECTION("transposed"){
+			Mat2 matA(1.0, 2.0, 3.0, 4.0);
+			Mat2 matB(3.9, -2.6, 0.0, 1.0);
+
+			Mat2 matC = matA.tra();
+			REQUIRE(matC.w == 1.0);
+			REQUIRE(matC.x == 3.0);
+			REQUIRE(matC.y == 2.0);
+			REQUIRE(matC.z == 4.0);
+
+			Mat2 matD = matB.tra();
+			REQUIRE(matD.w == Approx(3.9));
+			REQUIRE(matD.x == Approx(0.0));
+			REQUIRE(matD.y == Approx(-2.6));
+			REQUIRE(matD.z == 1.0);
+
+		}
+
+		SECTION("rotation matrix"){
+			
+			Mat2 matA = rot(0.5);
+			REQUIRE(matA.w == Approx(0.87758));
+			REQUIRE(matA.x == Approx(-0.47943));
+			REQUIRE(matA.y == Approx(0.47943));
+			REQUIRE(matA.z == Approx(0.87758));
+
+			Mat2 matB = rot(0.0);
+			REQUIRE(matB.w == 1.0);
+			REQUIRE(matB.x == 0.0);
+			REQUIRE(matB.y == 0.0);
+			REQUIRE(matB.z == 1.0);
+
+		}
+
+			
+
 	}
 
 

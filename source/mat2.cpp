@@ -1,5 +1,7 @@
 #include <iostream>
+#include <cmath>
 #include "mat2.hpp"
+#include "vec2.hpp"
 
 	Mat2::Mat2():
 		w{1.0}, x{0}, y{0}, z{1.0}{}
@@ -24,3 +26,35 @@
 	{
 		return Mat2(m1) *= m2;
 	}
+
+	//Multiply with vector
+	Vec2 Mat2::vecmat (Vec2 const& v)
+	{
+		return Vec2(w * v.x + x * v.y, y * v.x + z * v.y);	
+	}
+
+	//find determinant
+	float const Mat2::det()
+	{
+		return (w * z - x * y);
+	}
+
+	//inverse
+	Mat2 const Mat2::inv() 
+	{
+		return Mat2(z/det(), -x/det(), -y/det(), w/det());
+	}
+
+	//transpose
+	Mat2 const Mat2::tra()
+	{
+		return Mat2(w, y, x, z);
+	}
+
+	//rotation matrix
+	Mat2 const rot(float b)
+	{
+		return Mat2(cos(b), -sin(b), sin(b), cos(b));
+	}
+
+
