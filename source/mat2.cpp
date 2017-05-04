@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include "mat2.hpp"
-#include "vec2.hpp"
+
 
 	Mat2::Mat2():
 		w{1.0}, x{0}, y{0}, z{1.0}{}

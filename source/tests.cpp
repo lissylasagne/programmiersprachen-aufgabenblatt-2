@@ -373,8 +373,9 @@ TEST_CASE("test vectors", "[Vec2]")
 			
 			Vec2 vecA(0.0, 0.0);
 			Vec2 vecB(5.0, 3.5);
-			Circle cirA(7.0, vecA);
-			Circle cirB(-9.2, vecB);
+			Color color(0.5);
+			Circle cirA(7.0, vecA, color);
+			Circle cirB(-9.2, vecB, color);
 
 			REQUIRE (cirA.r == 7.0);
 			REQUIRE (cirA.mid.x == 0.0);
@@ -393,8 +394,9 @@ TEST_CASE("test vectors", "[Vec2]")
 			Vec2 vecA(0.0, 0.0);
 			Vec2 vecB(5.0, 3.5);
 			Vec2 vecC(-1.0, -3.0);
-			Rectangle recA(vecA, vecB);
-			Rectangle recB(vecC, vecA);
+			Color color(0.5);
+			Rectangle recA(vecA, vecB, color);
+			Rectangle recB(vecC, vecA, color);
 
 			REQUIRE (recA.min_.x == 0.0);
 			REQUIRE (recA.min_.y == 0.0);
@@ -429,8 +431,9 @@ TEST_CASE("test vectors", "[Vec2]")
 			Vec2 vecA(0.0, 0.0);
 			Vec2 vecB(5.0, 3.5);
 			Vec2 vecC(-1.0, -3.0);
-			Rectangle recA(vecA, vecB);
-			Rectangle recB(vecC, vecA);
+			Color color(0.5);
+			Rectangle recA(vecA, vecB, color);
+			Rectangle recB(vecC, vecA, color);
 
 			REQUIRE (recA.circumference() == 17.0);
 			REQUIRE (recB.circumference() == 8.0);

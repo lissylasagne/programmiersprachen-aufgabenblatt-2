@@ -1,4 +1,6 @@
 #include "window.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
@@ -26,6 +28,9 @@ int main(int argc, char* argv[])
     float x3{400 + 380 * std::sin(t-10.f)};
     float y3{400 + 380 * std::cos(t-10.f)};
 
+    Circle cirA(50.0, Vec2(250.0, 250.0), Color(1.0, 0.0, 0.0));
+    Rectangle recA(Vec2(20.0, 25.0), Vec2(500.0, 300.0), Color(0.2, 0.8, 0.2));
+
     win.draw_point(x1, y1,
         1.0f, 0.0f, 0.0f);
     win.draw_point(x2, y2, 0.0f, 1.0f, 0.0f);
@@ -46,6 +51,9 @@ int main(int argc, char* argv[])
 
     std::string text = "mouse position: (" + std::to_string(m.first) + ", " + std::to_string(m.second) + ")";
     win.draw_text(10, 5, 35.0f, text);
+
+    cirA.draw(win);
+    recA.draw(win);
 
     win.update();
   }

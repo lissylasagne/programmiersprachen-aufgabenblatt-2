@@ -1,9 +1,8 @@
 #include <iostream>
 #include "rectangle.hpp"
-#include "vec2.hpp"
 
-	Rectangle::Rectangle(Vec2 const& a, Vec2 const& b):
-		min_{a}, max_{b}{}
+	Rectangle::Rectangle(Vec2 const& a, Vec2 const& b, Color const& c):
+		min_{a}, max_{b}, color{c}{}
 
 		Vec2 const Rectangle::getMin()
 		{
@@ -36,4 +35,14 @@
 			float d = getLeftHigh().y - min_.y;
 
 			return(a + b + c + d);
+		}
+
+		void Rectangle::draw(Window const& window)
+		{
+			//draw 4 lines
+			window.draw_line(min_.x, min_.y, max_.x, min_.y, color.r, color.g, color.b);
+			window.draw_line(max_.x, min_.y, max_.x, max_.y, color.r, color.g, color.b);
+			window.draw_line(max_.x, max_.y, min_.x, max_.y, color.r, color.g, color.b);
+			window.draw_line(min_.x, max_.y, min_.x, min_.y, color.r, color.g, color.b);
+
 		}
