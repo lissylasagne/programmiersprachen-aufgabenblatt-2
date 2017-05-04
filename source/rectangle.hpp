@@ -14,7 +14,9 @@ struct Rectangle
 	Vec2 const getLeftHigh();
 	float const circumference();
 	void draw(Window const& window);
-	
+	void draw(Window const& window, Color const& color);
+	bool is_inside(Vec2 const& v);
+	void setColor(Color const& c);
 
 	Vec2 min_;
 	Vec2 max_;

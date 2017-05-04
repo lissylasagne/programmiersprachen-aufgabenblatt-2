@@ -28,8 +28,12 @@ int main(int argc, char* argv[])
     float x3{400 + 380 * std::sin(t-10.f)};
     float y3{400 + 380 * std::cos(t-10.f)};
 
+    //circle and rectangles for drawing
     Circle cirA(50.0, Vec2(250.0, 250.0), Color(1.0, 0.0, 0.0));
-    Rectangle recA(Vec2(20.0, 25.0), Vec2(500.0, 300.0), Color(0.2, 0.8, 0.2));
+    Rectangle recA(Vec2(20.0, 20.0), Vec2(100.0, 200.0), Color(0.2, 0.8, 0.2));
+    
+    Circle cirB(150.0, Vec2(500.0, 500.0), Color(0.0, 0.0, 1.0));
+    Rectangle recB(Vec2(200.0, 400.0), Vec2(500.0, 500.0), Color(0.2, 0.8, 0.2));
 
     win.draw_point(x1, y1,
         1.0f, 0.0f, 0.0f);
@@ -42,6 +46,27 @@ int main(int argc, char* argv[])
           m.first, m.second, // to
           1.0,0.0,0.0);
     }
+    //if mouse position is inside rectangle
+    if(recA.is_inside(Vec2(m.first, m.second)) == true) {
+        recA.setColor(Color(0.0, 0.0, 1.0));
+    }
+
+    if(recB.is_inside(Vec2(m.first, m.second)) == true) {
+        recB.draw(win, Color(0.0, 0.0, 1.0));
+    } else {
+        recB.draw(win, Color(0.2, 0.8, 0.8));
+    }
+
+    //if mouse position is inside circle
+    if(cirA.is_inside(Vec2(m.first, m.second)) == true) {
+        cirA.setColor(Color(0.0, 0.0, 1.0));
+    }
+
+    if(cirB.is_inside(Vec2(m.first, m.second)) == true) {
+        cirB.draw(win, Color(0.0, 0.0, 1.0));
+    } else {
+        cirB.draw(win, Color(0.5, 0.5, 0.5));
+    }
 
     win.draw_line(0, m.second, 10, m.second, 0.0, 0.0, 0.0);
     win.draw_line(win.window_size().second - 10, m.second, win.window_size().second, m.second, 0.0, 0.0, 0.0);
@@ -52,8 +77,10 @@ int main(int argc, char* argv[])
     std::string text = "mouse position: (" + std::to_string(m.first) + ", " + std::to_string(m.second) + ")";
     win.draw_text(10, 5, 35.0f, text);
 
+    //drawing functions
     cirA.draw(win);
     recA.draw(win);
+    
 
     win.update();
   }

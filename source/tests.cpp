@@ -386,6 +386,19 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (cirB.mid.y == Approx(3.5));
 
 		}
+
+		SECTION("is inside"){
+			Vec2 vecA(1.0, 1.0);
+			Vec2 vecB(6.2, 1.0);
+			Color color(0.5);
+			Circle cirA(5.2, vecA, color);
+			Circle cirB(1.0, vecB, color);
+
+			REQUIRE (cirA.is_inside(vecA) == true);
+			REQUIRE (cirA.is_inside(vecB) == true);
+			REQUIRE (cirB.is_inside(vecA) == false);
+			REQUIRE (cirB.is_inside(vecB) == true);
+		}
 	}
 
 	TEST_CASE("test rectangle", "[Rectangle]"){
@@ -439,7 +452,29 @@ TEST_CASE("test vectors", "[Vec2]")
 			REQUIRE (recB.circumference() == 8.0);
 
 		}
+
+		SECTION("is inside"){
+
+			Vec2 vecA(1.0, 1.0);
+			Vec2 vecB(6.2, 4.0);
+			Vec2 vecC(2.0, 1.0);
+			Vec2 vecD(-1.6, -3.0);
+			Color color(0.5);
+			Rectangle recA(vecA, vecB, color);
+			Rectangle recB(vecD, vecC,  color);
+
+			REQUIRE (recA.is_inside(vecA) == true);
+			REQUIRE (recA.is_inside(vecB) == true);
+			REQUIRE (recA.is_inside(vecC) == true);
+			REQUIRE (recA.is_inside(vecD) == false);
+			REQUIRE (recB.is_inside(vecA) == true);
+			REQUIRE (recB.is_inside(vecB) == false);
+			REQUIRE (recB.is_inside(vecC) == true);
+			REQUIRE (recB.is_inside(vecD) == true);
+
+		}
 	}
+
 
 
 

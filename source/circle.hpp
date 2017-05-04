@@ -11,7 +11,9 @@ struct Circle
 	float const getR();
 	Vec2 const getMid();
 	void draw(Window const& window);
-
+	void draw(Window const& window, Color const& c);
+	bool is_inside(Vec2 const& v);
+	void setColor(Color const& c);
 
 	float r;
 	Vec2 mid;

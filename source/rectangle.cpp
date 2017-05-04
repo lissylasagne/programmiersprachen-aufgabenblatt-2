@@ -46,3 +46,32 @@
 			window.draw_line(min_.x, max_.y, min_.x, min_.y, color.r, color.g, color.b);
 
 		}
+
+		void Rectangle::draw(Window const& window, Color const& c)
+		{
+			//draw 4 lines
+			window.draw_line(min_.x, min_.y, max_.x, min_.y, c.r, c.g, c.b);
+			window.draw_line(max_.x, min_.y, max_.x, max_.y, c.r, c.g, c.b);
+			window.draw_line(max_.x, max_.y, min_.x, max_.y, c.r, c.g, c.b);
+			window.draw_line(min_.x, max_.y, min_.x, min_.y, c.r, c.g, c.b);
+
+		}
+
+		bool Rectangle::is_inside(Vec2 const& v)
+		{
+			if(v.x > max_.x || v.x < min_.x || v.y > max_.y || v.y < min_.y) {
+				return false;
+			} else {
+				return true;
+			}
+
+		}
+
+		void Rectangle::setColor(Color const& c)
+		{
+			color.setColor(c.r, c.g, c.b);
+		}
+
+
+
+
