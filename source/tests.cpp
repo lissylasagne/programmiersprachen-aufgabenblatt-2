@@ -2,6 +2,9 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "color.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 TEST_CASE("test vectors", "[Vec2]") 
 	{
@@ -318,16 +321,16 @@ TEST_CASE("test vectors", "[Vec2]")
 			Mat2 matB(3.9, -2.6, 0.0, 1.0);
 
 			Mat2 matC = matA.inv();
-			REQUIRE(matC.w == -2.0);
-			REQUIRE(matC.x == 1.0);
-			REQUIRE(matC.y == Approx(1.5));
-			REQUIRE(matC.z == Approx(-0.5));
+			REQUIRE (matC.w == -2.0);
+			REQUIRE (matC.x == 1.0);
+			REQUIRE (matC.y == Approx(1.5));
+			REQUIRE (matC.z == Approx(-0.5));
 
 			Mat2 matD = matB.inv();
-			REQUIRE(matD.w == Approx(0.2564));
-			REQUIRE(matD.x == Approx(0.66667));
-			REQUIRE(matD.y == 0.0);
-			REQUIRE(matD.z == 1.0);
+			REQUIRE (matD.w == Approx(0.2564));
+			REQUIRE (matD.x == Approx(0.66667));
+			REQUIRE (matD.y == 0.0);
+			REQUIRE (matD.z == 1.0);
 		}
 
 		SECTION("transposed"){
@@ -335,37 +338,104 @@ TEST_CASE("test vectors", "[Vec2]")
 			Mat2 matB(3.9, -2.6, 0.0, 1.0);
 
 			Mat2 matC = matA.tra();
-			REQUIRE(matC.w == 1.0);
-			REQUIRE(matC.x == 3.0);
-			REQUIRE(matC.y == 2.0);
-			REQUIRE(matC.z == 4.0);
+			REQUIRE (matC.w == 1.0);
+			REQUIRE (matC.x == 3.0);
+			REQUIRE (matC.y == 2.0);
+			REQUIRE (matC.z == 4.0);
 
 			Mat2 matD = matB.tra();
-			REQUIRE(matD.w == Approx(3.9));
-			REQUIRE(matD.x == Approx(0.0));
-			REQUIRE(matD.y == Approx(-2.6));
-			REQUIRE(matD.z == 1.0);
+			REQUIRE (matD.w == Approx(3.9));
+			REQUIRE (matD.x == Approx(0.0));
+			REQUIRE (matD.y == Approx(-2.6));
+			REQUIRE (matD.z == 1.0);
 
 		}
 
 		SECTION("rotation matrix"){
 			
 			Mat2 matA = rot(0.5);
-			REQUIRE(matA.w == Approx(0.87758));
-			REQUIRE(matA.x == Approx(-0.47943));
-			REQUIRE(matA.y == Approx(0.47943));
-			REQUIRE(matA.z == Approx(0.87758));
+			REQUIRE (matA.w == Approx(0.87758));
+			REQUIRE (matA.x == Approx(-0.47943));
+			REQUIRE (matA.y == Approx(0.47943));
+			REQUIRE (matA.z == Approx(0.87758));
 
 			Mat2 matB = rot(0.0);
-			REQUIRE(matB.w == 1.0);
-			REQUIRE(matB.x == 0.0);
-			REQUIRE(matB.y == 0.0);
-			REQUIRE(matB.z == 1.0);
+			REQUIRE (matB.w == 1.0);
+			REQUIRE (matB.x == 0.0);
+			REQUIRE (matB.y == 0.0);
+			REQUIRE (matB.z == 1.0);
+
+		}
+	}
+
+	TEST_CASE("test circle", "[Circle]"){
+		SECTION("attributes and getter"){
+			
+			Vec2 vecA(0.0, 0.0);
+			Vec2 vecB(5.0, 3.5);
+			Circle cirA(7.0, vecA);
+			Circle cirB(-9.2, vecB);
+
+			REQUIRE (cirA.r == 7.0);
+			REQUIRE (cirA.mid.x == 0.0);
+			REQUIRE (cirA.mid.y == 0.0);
+
+			REQUIRE (cirB.r == Approx(-9.2));
+			REQUIRE (cirB.mid.x == 5.0);
+			REQUIRE (cirB.mid.y == Approx(3.5));
+
+		}
+	}
+
+	TEST_CASE("test rectangle", "[Rectangle]"){
+		SECTION("attributes and getter"){
+			
+			Vec2 vecA(0.0, 0.0);
+			Vec2 vecB(5.0, 3.5);
+			Vec2 vecC(-1.0, -3.0);
+			Rectangle recA(vecA, vecB);
+			Rectangle recB(vecC, vecA);
+
+			REQUIRE (recA.min_.x == 0.0);
+			REQUIRE (recA.min_.y == 0.0);
+			REQUIRE (recA.max_.x == 5.0);
+			REQUIRE (recA.max_.y == Approx(3.5));
+
+			REQUIRE (recB.min_.x == -1.0);
+			REQUIRE (recB.min_.y == -3.0);
+			REQUIRE (recB.max_.x == 0.0);
+			REQUIRE (recB.max_.y == 0.0);
+
+			Vec2 vecD = recA.getRightLow();
+			REQUIRE (vecD.x == 5.0);
+			REQUIRE (vecD.y == 0.0);
+			
+			Vec2 vecE = recA.getLeftHigh();
+			REQUIRE (vecE.x == 0.0);
+			REQUIRE (vecE.y == 3.5);
+
+			Vec2 vecF = recB.getRightLow();
+			REQUIRE (vecF.x == 0.0);
+			REQUIRE (vecF.y == -3.0);
+			
+			Vec2 vecG = recB.getLeftHigh();
+			REQUIRE (vecG.x == -1.0);
+			REQUIRE (vecG.y == 0.0);
 
 		}
 
+		SECTION("circumference"){
 			
+			Vec2 vecA(0.0, 0.0);
+			Vec2 vecB(5.0, 3.5);
+			Vec2 vecC(-1.0, -3.0);
+			Rectangle recA(vecA, vecB);
+			Rectangle recB(vecC, vecA);
 
+			REQUIRE (recA.circumference() == 17.0);
+			REQUIRE (recB.circumference() == 8.0);
+
+		}
 	}
 
 
