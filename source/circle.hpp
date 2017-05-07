@@ -2,6 +2,7 @@
 #include "vec2.hpp"
 #include "color.hpp"
 #include "window.hpp"
+#include "mat2.hpp"
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
 

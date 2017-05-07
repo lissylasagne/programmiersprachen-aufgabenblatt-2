@@ -19,53 +19,29 @@
 
 		void Circle::draw(Window const& window)
 		{
-			//middle
-			//window.draw_point(mid.x, mid.y, color.r, color.g, color.b);
-			
-			float degree45 = sqrt((r*r)/2);
-			//lines
-			window.draw_line(mid.x + r, mid.y, mid.x + degree45, mid.y - degree45, color.r, color.g, color.b);
-			window.draw_line(mid.x + degree45, mid.y - degree45, mid.x, mid.y - r, color.r, color.g, color.b);
-			window.draw_line(mid.x, mid.y - r, mid.x - degree45, mid.y - degree45, color.r, color.g, color.b);
-			window.draw_line(mid.x - degree45, mid.y - degree45, mid.x - r, mid.y, color.r, color.g, color.b);
-			window.draw_line(mid.x - r, mid.y, mid.x - degree45, mid.y + degree45, color.r, color.g, color.b);
-			window.draw_line(mid.x - degree45, mid.y + degree45, mid.x, mid.y + r, color.r, color.g, color.b);
-			window.draw_line(mid.x, mid.y + r, mid.x + degree45, mid.y + degree45, color.r, color.g, color.b);
-			window.draw_line(mid.x + degree45, mid.y + degree45, mid.x + r, mid.y, color.r, color.g, color.b);
+			draw(window, color);
+
 		}
 
 		void Circle::draw(Window const& window, Color const& c)
 		{
-			//middle
-			//window.draw_point(mid.x, mid.y, color.r, color.g, color.b);
+			Mat2 matA = rot(0.2617994);
+			Vec2 vecA(r, 0.0);
 			
-			float degree45 = sqrt((r*r)/2);
-			//lines
-			window.draw_line(mid.x + r, mid.y, mid.x + degree45, mid.y - degree45, c.r, c.g, c.b);
-			window.draw_line(mid.x + degree45, mid.y - degree45, mid.x, mid.y - r, c.r, c.g, c.b);
-			window.draw_line(mid.x, mid.y - r, mid.x - degree45, mid.y - degree45, c.r, c.g, c.b);
-			window.draw_line(mid.x - degree45, mid.y - degree45, mid.x - r, mid.y, c.r, c.g, c.b);
-			window.draw_line(mid.x - r, mid.y, mid.x - degree45, mid.y + degree45, c.r, c.g, c.b);
-			window.draw_line(mid.x - degree45, mid.y + degree45, mid.x, mid.y + r, c.r, c.g, c.b);
-			window.draw_line(mid.x, mid.y + r, mid.x + degree45, mid.y + degree45, c.r, c.g, c.b);
-			window.draw_line(mid.x + degree45, mid.y + degree45, mid.x + r, mid.y, c.r, c.g, c.b);
+
+			for (int i = 1; i <= 24; i++){
+				Vec2 vecB = matA.vecmat(vecA);
+				window.draw_line(mid.x + vecA.x, mid.y + vecA.y, mid.x + vecB.x, mid.y + vecB.y, c.r, c.g, c.b);
+				vecA = (matA.vecmat(vecA)); 
+			}
+
 		}
 
 		bool Circle::is_inside(Vec2 const& v)
 		{
-			float degree45 = sqrt((r*r)/2);
-
-			if (v.x > mid.x + r || v.x < mid.x - r || v.y > mid.y + r || v.y < mid.y - r) {
+			if(((v.x - mid.x) * (v.x - mid.x) + (v.y - mid.y) * (v.y - mid.y)) > (r * r)) {
 				return false;
-			} else if (v.x > mid.x + degree45 && v.y > mid.y + degree45) {
-				return false;
-			} else if (v.x > mid.x + degree45 && v.y < mid.y - degree45) {
-				return false;
-			} else if (v.x < mid.x - degree45 && v.y > mid.y + degree45) {
-				return false;
-			} else if (v.x < mid.x - degree45 && v.y < mid.y - degree45) {
-				return false;
-			} else {
+			} else {
 				return true;
 			}
 		}
