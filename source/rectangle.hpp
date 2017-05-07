@@ -8,14 +8,14 @@
 struct Rectangle
 {
 	Rectangle(Vec2 const& a, Vec2 const& b, Color const& c);
-	Vec2 const getMin();
-	Vec2 const getMax();
-	Vec2 const getRightLow();
-	Vec2 const getLeftHigh();
-	float const circumference();
-	void draw(Window const& window);
-	void draw(Window const& window, Color const& color);
-	bool is_inside(Vec2 const& v);
+	Vec2 const getMin() const;
+	Vec2 const getMax() const;
+	Vec2 const getRightLow() const;
+	Vec2 const getLeftHigh() const;
+	float const circumference() const;
+	void draw(Window const& window) const;
+	void draw(Window const& window, Color const& color) const;
+	bool is_inside(Vec2 const& v) const;
 	void setColor(Color const& c);
 
 	Vec2 min_;

@@ -5,25 +5,25 @@
 	Circle::Circle(float a, Vec2 const& b, Color const& c):
 		r{a}, mid{b}, color{c}{}
 
-		float const Circle::getR()
+		float const Circle::getR() const
 		{
 			return r;
 		}
 
-		Vec2 const Circle::getMid()
+		Vec2 const Circle::getMid() const
 		{
 			return mid;
 		}
 
 
 
-		void Circle::draw(Window const& window)
+		void Circle::draw(Window const& window) const
 		{
 			draw(window, color);
 
 		}
 
-		void Circle::draw(Window const& window, Color const& c)
+		void Circle::draw(Window const& window, Color const& c) const
 		{
 			Mat2 matA = rot(0.2617994);
 			Vec2 vecA(r, 0.0);
@@ -37,7 +37,7 @@
 
 		}
 
-		bool Circle::is_inside(Vec2 const& v)
+		bool Circle::is_inside(Vec2 const& v) const
 		{
 			if(((v.x - mid.x) * (v.x - mid.x) + (v.y - mid.y) * (v.y - mid.y)) > (r * r)) {
 				return false;

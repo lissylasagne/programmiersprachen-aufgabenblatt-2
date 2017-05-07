@@ -9,11 +9,11 @@
 struct Circle
 {
 	Circle(float a, Vec2 const& b, Color const& c);
-	float const getR();
-	Vec2 const getMid();
-	void draw(Window const& window);
-	void draw(Window const& window, Color const& c);
-	bool is_inside(Vec2 const& v);
+	float const getR() const;
+	Vec2 const getMid() const;
+	void draw(Window const& window) const;
+	void draw(Window const& window, Color const& c) const;
+	bool is_inside(Vec2 const& v) const;
 	void setColor(Color const& c);
 
 	float r;

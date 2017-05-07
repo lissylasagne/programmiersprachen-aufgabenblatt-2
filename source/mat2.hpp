@@ -7,10 +7,10 @@ struct Mat2
 {
 	Mat2();
 	Mat2(float a, float b, float c, float d);
-	Vec2 vecmat (Vec2 const& v);
-	float const det(); 
-	Mat2 const inv();
-	Mat2 const tra();
+	Vec2 vecmat (Vec2 const& v) const;
+	float const det() const; 
+	Mat2 const inv() const;
+	Mat2 const tra()const;
 
 	Mat2& operator*=(Mat2 const& m);
 

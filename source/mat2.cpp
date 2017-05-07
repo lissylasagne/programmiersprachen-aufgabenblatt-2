@@ -28,25 +28,25 @@
 	}
 
 	//Multiply with vector
-	Vec2 Mat2::vecmat (Vec2 const& v)
+	Vec2 Mat2::vecmat (Vec2 const& v) const
 	{
 		return Vec2(w * v.x + x * v.y, y * v.x + z * v.y);	
 	}
 
 	//find determinant
-	float const Mat2::det()
+	float const Mat2::det() const
 	{
 		return (w * z - x * y);
 	}
 
 	//inverse
-	Mat2 const Mat2::inv() 
+	Mat2 const Mat2::inv() const
 	{
 		return Mat2(z/det(), -x/det(), -y/det(), w/det());
 	}
 
 	//transpose
-	Mat2 const Mat2::tra()
+	Mat2 const Mat2::tra() const
 	{
 		return Mat2(w, y, x, z);
 	}
