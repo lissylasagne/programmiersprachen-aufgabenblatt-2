@@ -1,0 +1,22 @@
+Fragen Blatt 2
+
+include guard
+#ifndef 
+#define
+
+#endif
+
+->in der app Datei, wegen einbinden einer header Datei in mehrere andere Dateien, include guards, damit es nicht mehrmals definiert wird
+
+
+Destruktor
+Gegenteil von Konstruktor, zum löschen
+
+class
+Members sind private 
+
+struct
+Members sind public
+
+Datentransferobjekt
+die Bündelung von mehreren Daten in einem Objekt -> schneller Zugriff möglich
